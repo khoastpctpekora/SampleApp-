@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Package Name="SampleApp"
+			 Manufacturer="Nho Anh Khoa Nguyen (105312661)"
+			 Version="1.0.0.0"
+			 UpgradeCode="81102A4D-0057-47DA-A459-4B47FD93F932"
+			 Scope="perMachine">
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of SampleApp is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<StandardDirectory Id="ProgramFiles6432Folder">
+			<Directory Id="INSTALLFOLDER" Name="SampleApp" />
+		</StandardDirectory>
+
+		<Feature Id="Main" Title="SampleApp" Level="1">
+			<ComponentGroupRef Id="AppComponents" />
+		</Feature>
+
+		<ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+			<Component>
+				<File Source="$(var.SampleApp.TargetDir)SampleApp.exe" />
+			</Component>
+			<Component>
+				<File Source="$(var.SampleApp.TargetDir)MathLib.dll" />
+			</Component>
+			<Component>
+				<File Source="$(var.SampleApp.TargetDir)TextLib.dll" />
+			</Component>
+			<Component>
+				<File Source="$(var.SampleApp.TargetDir)Newtonsoft.Json.dll" />
+			</Component>
+		</ComponentGroup>
+
+	</Package>
+</Wix>
